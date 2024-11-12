@@ -1,25 +1,30 @@
 package page;
 
-import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
+import attributes.HomeAttributes;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
-public class HomePage {
+import java.time.Duration;
+
+public class HomePage extends HomeAttributes {
     //importou da construção do loginPage
     private WebDriver driver;
 
     public HomePage(WebDriver driver){
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public void validarLoginSucesso(){
-        String titulo = driver.findElement(By.xpath("//div[contains(text(), 'Swag Labs')]")).getText();
-        Assertions.assertEquals("Swag Labs", titulo);
+        String titulo = mensagemLoginSucesso.getText();
+        Assert.assertEquals("Swag Labs", titulo);
     }
 
     public void fazerLogout(){
-        driver.findElement(By.id("react-burger-menu-btn")).click();
-        driver.findElement(By.id("logout_sidebar_link")).click();
+        menuHamburguer.click();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        botaoLogOut.click();
         driver.quit();
     }
 }

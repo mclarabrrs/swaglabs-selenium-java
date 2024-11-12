@@ -1,25 +1,27 @@
 package page;
 
-import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
+import attributes.LoginAttributes;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
+public class LoginPage extends LoginAttributes {
 
     public WebDriver driver;
 
     public void acessarPlataforma(){
+
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/drivers/chromedriver.exe");
         driver = new ChromeDriver();
+        PageFactory.initElements(driver, this);
 
         driver.get("https://www.saucedemo.com/");
     }
 
     public void informarCredenciais(){
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-        driver.findElement(By.name("password")).sendKeys("secret_sauce");
-        driver.findElement(By.id("login-button")).click();
+        preencherUsername.sendKeys("standard_user");
+        preencherPassword.sendKeys("secret_sauce");
+        botaoLogin.click();
     }
 
 }

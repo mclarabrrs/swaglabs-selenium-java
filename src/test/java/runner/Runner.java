@@ -1,10 +1,8 @@
 package runner;
 
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
-import org.junit.runner.RunWith;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
 
-@RunWith(Cucumber.class)
 @CucumberOptions(
         tags = "@wip",
 
@@ -18,5 +16,7 @@ import org.junit.runner.RunWith;
         //cenarios de teste
         features = {"src/test/resources/features"})
 
-public class Runner{}
+public class Runner extends AbstractTestNGCucumberTests {
+
+}
 
